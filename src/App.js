@@ -7,7 +7,7 @@ import Yelp from './util/Yelp';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { businesses: [] };
+    this.state = { businesses: undefined };
     this.searchYelp = this.searchYelp.bind(this);
   }
 

@@ -4,13 +4,31 @@ import Business from '../Business/Business';
 
 class BusinessList extends React.Component {
   render() {
-    return (
+    let renderBussinesses = (
       <div className="BusinessList">
-        {this.props.businesses.map(business => {
-            return <Business key={business.id} business={business} />
-        })};
       </div>
     );
+    if (this.props.businesses === undefined) {
+      renderBussinesses = (
+        <div className="BusinessList">
+        </div>
+      );
+    } else if (this.props.businesses.length === 0) {
+      renderBussinesses = (
+        <div className="BusinessList">
+          <h2>No results found.</h2>
+        </div>
+      );
+    } else {
+      renderBussinesses = (
+        <div className="BusinessList">
+          {this.props.businesses.map(business => {
+              return <Business key={business.id} business={business} />
+          })};
+        </div>
+      );
+    }
+    return renderBussinesses;
   }
 };
 
