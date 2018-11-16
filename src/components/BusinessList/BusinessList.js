@@ -4,17 +4,31 @@ import Business from '../Business/Business';
 
 class BusinessList extends React.Component {
   render() {
-    return (
+    let renderBussinesses = (
       <div className="BusinessList">
-        {/* Tested on React version React version 15.1.0 requests each child
-            of an array or iterator should have a unique key prop, so a
-            key prop added to each map element to correct remove this warning.
-          */}
-        {this.props.businesses.map((business, key) => {
-            return <Business key={key} business={business} />
-        })};
       </div>
     );
+    if (this.props.businesses === undefined) {
+      renderBussinesses = (
+        <div className="BusinessList">
+        </div>
+      );
+    } else if (this.props.businesses.length === 0) {
+      renderBussinesses = (
+        <div className="BusinessList">
+          <h2>No results found.</h2>
+        </div>
+      );
+    } else {
+      renderBussinesses = (
+        <div className="BusinessList">
+          {this.props.businesses.map(business => {
+              return <Business key={business.id} business={business} />
+          })};
+        </div>
+      );
+    }
+    return renderBussinesses;
   }
 };
 
